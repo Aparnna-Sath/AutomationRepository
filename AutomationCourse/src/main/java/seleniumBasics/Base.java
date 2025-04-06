@@ -1,28 +1,33 @@
-package seleniumBasics;
+package seleniumBasics; // Declares the package name
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import java.time.Duration;
 
-public class Base {
+import org.openqa.selenium.WebDriver; // Imports the WebDriver interface from Selenium
+import org.openqa.selenium.chrome.ChromeDriver; // Imports the ChromeDriver class to use Chrome browser
+
+public class Base { // Defines the Base class
 	
-	public WebDriver driver;//driver is an object of global entity webdriver
+	public WebDriver driver; // Declares a WebDriver object named 'driver' at the class level (global scope)
 	
-	 public void initializeBrowser()
-	   {
-		   driver=new ChromeDriver();//Chromedriver is a predefined class
-		   		driver.get("https://selenium.qabible.in");  //get is the method used to launch url
-		   		//driver.manage().window().minimize();
-	   }
-	 public void driverCloseandQuit()
-	 {
-		// driver.quit();
-	 }
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//we have to call the method here
-		Base base=new Base();//give same name as class
-		base.initializeBrowser();//calling the method
-        base.driverCloseandQuit();
+	public void initializeBrowser() { // Method to initialize and launch the browser
+		driver = new ChromeDriver(); // Creates an instance of ChromeDriver to open a Chrome browser
+		driver.get("https://selenium.qabible.in"); // Opens the specified URL in the browser
+		
+		// driver.manage().window().minimize(); // This line (commented) would minimize the browser window
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
-  
+	
+	public void driverCloseandQuit() { // Method to close or quit the browser
+		// driver.quit(); // Closes all browser windows and ends the WebDriver session (commented out)
+	}
+	
+	public static void main(String[] args) { // Main method - the entry point of the program
+		// TODO Auto-generated method stub (Placeholder for additional functionality)
+		
+		// Create an instance of the Base class
+		Base base = new Base(); // Instantiating the Base class (creating an object)
+		
+		base.initializeBrowser(); // Calling the method to initialize and open the browser
+		base.driverCloseandQuit(); // Calling the method to close the browser (not active due to commented line)
+	}
 }

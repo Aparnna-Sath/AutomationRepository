@@ -1,7 +1,14 @@
 package seleniumBasics;
 
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 public class HandlingCheckBox extends Base
 
@@ -33,6 +40,11 @@ public class HandlingCheckBox extends Base
 	{
 		driver.navigate().to("https://www.webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
 		WebElement radiobutton=driver.findElement(By.xpath("//input[@value='green']"));
+		Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(10))
+				.pollingEvery(Duration.ofSeconds(3))
+				.ignoring(NoSuchElementException.class);
+				fluentWait.until(ExpectedConditions.elementToBeClickable(radiobutton));
 		radiobutton.click();
 		System.out.println(radiobutton.isSelected());
 		
